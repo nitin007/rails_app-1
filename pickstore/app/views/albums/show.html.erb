@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<table id = "alb_usr">
+	<tr>
+		<td><b>Album:</b> <%= @album.name %></td>
+		<td><b>User:</b>  <span><%= @album.user.username %></span></td>
+	</tr>
+</table>
+
+<div><h1>Images</h1></div>
+
+<div>
+	<table class = "images_table">
+		<tr id = "headers">
+			<th id = "first">Title</td>
+			<th>Image</td>
+			<th></th>	
+			<th></th>
+		</tr>			
+	<% @album.images.each do |image| %> 
+		<tr class = "images_row">
+			<td class = "first"><%= image.title %></td>
+			<td><%= image_tag image.picture.url(:thumb) %></td>
+			<td class = "link"><%= link_to "show", [@album, image] %></td>
+			<td class = "link"><%= link_to "destroy", [@album, image], confirm: 'Are you sure!', method: :delete %></td>
+		</tr>
+	<% end %>
+	</table>
+	<br />
+ </div>
+<%= link_to 'Edit', edit_album_path(@album) %> |
+<%= link_to 'Back', albums_path %>
+

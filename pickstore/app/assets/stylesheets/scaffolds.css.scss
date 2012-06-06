@@ -1,0 +1,191 @@
+body {
+	margin: 0px;
+	padding: 0px;
+  background-color: #EBEBEB;
+  color: #333;
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size: 13px;
+  line-height: 18px; }
+
+p, ol, ul, td {
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size: 13px;
+  line-height: 18px; }
+
+pre {
+  background-color: #eee;
+  padding: 10px;
+  font-size: 11px; }
+
+a {
+  color: #000;
+  &:visited {
+    color: #666; }
+  &:hover {
+    color: #fff;
+    background-color: #000; } }
+
+div {
+  &.field, &.actions {
+    margin-bottom: 10px; } }
+
+#notice {
+  color: green; }
+
+.field_with_errors {
+  padding: 2px;
+  background-color: red;
+  display: table; }
+
+#error_explanation {
+  width: 450px;
+  border: 2px solid red;
+  padding: 7px;
+  padding-bottom: 0;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+  h2 {
+    text-align: left;
+    font-weight: bold;
+    padding: 5px 5px 5px 15px;
+    font-size: 12px;
+    margin: -7px;
+    margin-bottom: 0px;
+    background-color: #c00;
+    color: #fff; }
+  ul li {
+    font-size: 12px;
+    list-style: square; } }
+    
+    
+div.header {
+	background-color: #333;
+	height:80px;
+	color: #fff;
+	padding: 10px;
+}
+
+div.headText {
+	margin: 10px;  
+	font: 50px sans-serif;  
+	font-weight: bold;
+	margin-left: 150px;
+}
+
+div.wrapper {
+	width: 100%;
+}
+
+div.contentWrapper {
+	width:1100px;
+	margin:0 auto;
+}    
+
+div.login {
+	float: right;
+}
+
+div.images {
+	float: left;
+}
+
+div.login .head {
+	font: 25px sans-serif;  
+	font-weight: bold;
+}    
+
+div.signIn #username, div.signIn #password, div.signUp #username, div.signUp #password, div.signUp #confirm {
+		font: 18px sans-serif;
+}
+
+
+input {
+	border: 1px solid #BCBCBC;
+	height: 20px;
+}
+
+div.signUp td {
+	padding: 5px;
+}
+
+a {
+	text-decoration: none;
+	font: 16px sans-serif;
+}
+
+div.albumListing #logout {
+	float: right;
+}
+
+table {
+	border-collapse: collapse;
+	margin: 0px;
+	padding: 5px;
+}
+
+tr.albums, tr.images_row {
+	border-bottom: 1px solid black;
+}
+
+tr.albums td, tr.images_row td {
+	padding: 0 20px;
+	font-size: 18px;
+}
+
+tr.albums td.first, tr.images_row td.first {
+	padding-left: 0px;
+}
+
+tr.headers th.first, tr#headers th#first {
+	float: left;
+}
+
+tr.albums td.link, tr.images_row td.link {
+	padding: 5px;
+}
+
+tr.images_row td {
+	padding-top: 10px;
+}
+
+tr.headers th, tr#headers th {
+	font-size: 20px;
+	margin-left: 0px;
+}
+
+tr.albums td a, tr.images_row td a {
+	font-size: 12px;
+}
+
+div#user td {
+	padding: 5px;
+}
+
+table#login td {
+	padding: 5px;
+}
+
+div.images #img1 {
+	-webkit-transform: rotate(-30deg);
+}
+
+div.images #img2 {
+	-webkit-transform: rotate(30deg);
+}
+
+div.images #img3 {
+margin-left: 133px;
+}
+
+table#alb_usr td {
+	padding-left: 20px;
+	font-size: 15px;
+}
+
+table#alb_usr td:first-child {
+	padding-left: 0px;
+}
+
+div.nested_img, div.nested_tags {
+	margin-left: 20px;
+}

@@ -1,0 +1,11 @@
+<div class="rfield">
+  <%= f.label :name, 'Tag:' %>
+  <%= f.text_field :name %>
+</div>
+
+<% unless f.object.nil? || f.object.new_record? %>
+  <div class="field">
+    <%= f.label :_destroy, 'Remove:' %>
+    <%= f.check_box :_destroy %>
+  </div>
+<% end %>

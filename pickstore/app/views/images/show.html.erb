@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Title:</b>
+  <%= @image.title %>
+</p>
+
+<p>
+  <b>Picture:</b>
+  <%= image_tag @image.picture.url(:small) %>
+</p>
+
+<p>
+  <b>Tags:</b>
+  <%= @image.tags.map { |t| t.name }.join(", ") %>
+</p>
+
+<p>
+  <b>Album:</b>
+  <%= @image.album.name %>
+</p>
+
+<%= link_to 'Back', album_path(@album) %> 
+<span>|</span>
+<%= link_to "destroy", [@album, @image], confirm: 'Are you sure?', method: :delete %>
+

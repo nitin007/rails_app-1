@@ -1,0 +1,52 @@
+<div class = "albumListing">
+
+<% if session[:current_user] %>
+	<div id = "user">
+		<table>
+			<tr>
+				<td>Hi <b><%= session[:current_user] %> </b></td>
+				<td><%= link_to "logout", logout_path %></td>
+			</tr>
+		</table>
+	</div>
+<% else %>
+	<div id = "user">
+		<table>
+			<tr>
+				<td><%= link_to "login", login_path %> </b></td>
+				<td><%= link_to "signup", signup_path %></td>
+			</tr>
+		</table>
+	</div>		
+<% end %>
+	<br />
+
+	<div><h1>Listing Albums</h1></div>
+	
+	<table>
+		<tr class = "headers">
+		  <th class = "first">Name</th>
+		  <th>User</th>
+		  <th></th>
+		  <th></th>
+		  <th></th>
+		</tr>
+
+	<% @albums.each do |album| %>
+		<tr class = "albums">
+		  <td class = "first"><%= album.name %></td>
+		  <td><%= album.user.username %></td>
+		  <td class = "link"><%= link_to 'Show', album %></td>
+		  <% if session[:current_user] %>
+				<td class = "link"><%= link_to 'Edit', edit_album_path(album) %></td>
+				<td class = "link"><%= link_to 'Destroy', album, confirm: 'Are you sure?', method: :delete %></td>
+			<% end %>
+		</tr>
+	<% end %>
+	</table>
+
+	<br />
+	<% if session[:current_user] %>
+		<%= link_to 'New Album', new_album_path %>
+	<% end %>
+</div>

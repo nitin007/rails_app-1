@@ -1,0 +1,9 @@
+<%= f.fields_for :images do |builder| %>
+  <%= render "images/form", :f => builder %>
+<% end %>
+</div>
+	
+<div class="actions">
+	<%= f.submit ('Add Image') %>
+</div>
+

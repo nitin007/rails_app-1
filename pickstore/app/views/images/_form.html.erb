@@ -1,0 +1,19 @@
+<div  class = "image_form">
+	<div class="field">
+		<%= f.label :title, "Title" %><br />
+		<%= f.text_field :title %>
+	</div>
+
+	<div class="field">
+		<%= f.label :picture, "Image" %><br />
+		<%= f.file_field :picture %>
+	</div>
+	
+	<div class = "nested_tags">
+		<%= f.fields_for :tags do |builder| %>
+			<h3>Tags</h3>
+			<%= render "tags/form", :f => builder %>
+		<% end %>
+		<p><%= link_to_add_fields "Add Tags", f, :tags %></p>
+	</div>
+</div>
