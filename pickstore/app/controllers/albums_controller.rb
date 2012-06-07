@@ -2,7 +2,13 @@ class AlbumsController < ApplicationController
 	before_filter :only_when_user_is_logged_in
 	
   def index
+    # FIXME: WA: Put fetching of current user in
+    # a method in application controller as a
+    # helper method.
   	@user = User.find(session[:current_user_id])
+
+    # FIXME: WA: I don't think it's neccessary
+    # to call .all
     @albums = @user.albums.all
 
     respond_to do |format|
@@ -14,6 +20,9 @@ class AlbumsController < ApplicationController
   def show
   	@user = User.find(session[:current_user_id])
   	
+    # OPTIMIZE: WA: .exists? and then .find will
+    # fire off two SQL queries. Use only find
+    # and take decision depending upon the result.
     if @user.albums.exists?(params[:id])
     	@album = @user.albums.find(params[:id])
 			respond_to do |format|

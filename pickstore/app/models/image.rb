@@ -9,8 +9,16 @@ class Image < ActiveRecord::Base
   		:whiny_thumbnails => true
   		
   validates :title, :presence => true
+  # FIXME: WA: Following should also include validations for
+  # size and type of the file being uploaded. A user can
+  # upload an avi file of 4GiB
   validates_attachment_presence :picture
   
   accepts_nested_attributes_for :tags, 
+    # FIXME: WA: Shouldn't following proc use any? instead
+    # of all?. Attributes should be rejected if any of the
+    # tags being submitted is blank. Infact one should
+    # reject only blank tags and proceed with the creation
+    # of others.
   :reject_if => proc { |attrs| attrs.all? { |k, v| v.blank? } }, :allow_destroy => true
 end

@@ -12,6 +12,8 @@ describe Image do
 	
 	context "with its attributes filled" do
 		it "should be valid" do
+      # TODO: WA: Use a real image file to test the
+      # validity of an image.
 			@image = Image.new(:title => "abcde", :picture_file_name => "url.jpg", :picture_content_type => "abc", :picture_file_size => 865, :album_id => 2)
 			@image.should be_valid
 		end
@@ -25,6 +27,9 @@ describe Image do
 			@image.should be_valid
 		end
 		
+    # FIXME: WA: What does following test do?
+    # Check the validity of a tag? Move it
+    # to Tag's specs.
 		it "with tags should be valid" do
 			@image = Image.new(:title => "abcde", :picture_file_name => "url.jpg", :picture_content_type => "abc", :picture_file_size => 865, :album_id => 2)
 			@image.should be_valid
@@ -34,6 +39,9 @@ describe Image do
 	end
 	
 	context "destroys" do
+    # FIXME: WA: This test does not test the presence
+    # of an tag in the database but rather its
+    # validity.
 		it "should destroy associated tags" do
 			@image = Image.new(:title => "abcde", :picture_file_name => "url.jpg", :picture_content_type => "abc", :picture_file_size => 865, :album_id => 2)
 			@image.should be_valid

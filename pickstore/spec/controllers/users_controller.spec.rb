@@ -13,6 +13,8 @@ describe UsersController, :type => :controller do
 	
 	context "creates a new user" do
 		it "should redirect to albums path with notice on successful registered" do
+      # TODO: WA: Write controller tests in isolation of your
+      # database. Use stubs and mocks.
 			post :create, :user => {:username => "nitin", :password => "abcdef", :password_confirmation => "abcdef"}
 			flash[:notice].should_not be_nil
 			session[:current_user].should_not be_nil

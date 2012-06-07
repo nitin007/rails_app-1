@@ -27,6 +27,7 @@ describe User do
 
 			@user2 = User.new(:username => "nitin", :password => "87654321", :password_confirmation => "87654321")
 			@user2.should_not be_valid
+      # FIXME: WA: Following line is not needed
 			@user1.destroy
 		end
 	end
@@ -55,13 +56,19 @@ describe User do
 	end
 	
 	context "association" do
+    # FIXME: WA: What does following test do?
+    # Check the validity of an album? Move it
+    # to Album's specs.
 		it "with albums should be valid" do
 			@user = User.new(:username => "nitin2", :password => "1234567", :password_confirmation => "1234567")
+      # FIXME: WA: We need not check a users validity in every test.
+      # It is already tested in one of the tests above.
 			@user.should be_valid
 			@user.save
 			
 			@album = @user.albums.new(:name => "Nature")
 			@album.should be_valid
+      # FIXME: WA: Following line is not needed
 			@user.destroy			
 		end
 	end
@@ -71,6 +78,9 @@ describe User do
 			@user = User.new(:username => "nitin3", :password => "abcdef", :password_confirmation => "abcdef")
 			@user.should be_valid
 			@user.save
+      # FIXME: WA: The use of == here might give you
+      # "possible useless use of == in void context"
+      # warning. Use eql() method provided by rspec.
 			@user.password.should be == Digest::SHA512.hexdigest('abcdef')
 			@user.destroy
 		end
@@ -81,10 +91,18 @@ describe User do
 		@user.should be_valid
 		@user.save
 		User.authenticate(@user.username, '1234hjki').should == nil
+    # FIXME: WA: Following does not test the behavior
+    # correctly. User#authenticate returns a user from
+    # database. A user in database is supposed to be valid.
+    # If someday someone changes that method to return
+    # somee other model which is valid, following test
+    # will pass but your code will be have a bug.
 		User.authenticate(@user.username, "abcdef").should be_valid
 		@user.destroy
 	end
 	
+  # FIXME: WA: This has already been tested in a
+  # test above.
 	it "should hash password" do
 		@user = User.new(:username => "nitin", :password => "abcdef", :password_confirmation => "abcdef")
 		@user.hash_password
