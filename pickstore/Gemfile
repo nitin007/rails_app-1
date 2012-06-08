@@ -44,3 +44,5 @@ group :test, :development do
 end
 
 gem 'simplecov', :require => false, :group => :test
+
+gem 'bcrypt-ruby', '~> 3.0.0'

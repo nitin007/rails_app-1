@@ -15,10 +15,11 @@ describe UsersController, :type => :controller do
 		it "should redirect to albums path with notice on successful registered" do
       # TODO: WA: Write controller tests in isolation of your
       # database. Use stubs and mocks.
-			post :create, :user => {:username => "nitin", :password => "abcdef", :password_confirmation => "abcdef"}
+      
+      #Fixed NG
+		  User.stub!(:new) {mock_model('User', :save => true)}
+			post :create, :user => :username => "niitn", :password => "abcdef", :password_confirmation => "abcdef"
 			flash[:notice].should_not be_nil
-			session[:current_user].should_not be_nil
-			session[:current_user_id].should_not be_nil			
 			response.should redirect_to(albums_path)
 		end
 		

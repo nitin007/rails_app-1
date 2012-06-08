@@ -9,3 +9,4 @@ class Album < ActiveRecord::Base
   accepts_nested_attributes_for :images, 
   :reject_if => proc { |attrs| attrs['title'].blank? }, :allow_destroy => true
 end
+

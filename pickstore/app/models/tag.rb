@@ -10,7 +10,7 @@ class Tag < ActiveRecord::Base
   #
   # >> tag = Tag.where(:name => "vacation").first
   # >> tag.images
-  #
 
-  belongs_to :image
+	#Fixed: NG
+  has_and_belongs_to_many :images
 end

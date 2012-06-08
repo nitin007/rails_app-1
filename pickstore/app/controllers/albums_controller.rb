@@ -5,11 +5,14 @@ class AlbumsController < ApplicationController
     # FIXME: WA: Put fetching of current user in
     # a method in application controller as a
     # helper method.
-  	@user = User.find(session[:current_user_id])
+#  	@user = current_user #User.find(session[:current_user_id])
+		# Fixed: NG
 
     # FIXME: WA: I don't think it's neccessary
     # to call .all
-    @albums = @user.albums.all
+    
+    #Fixed: NG
+#    @albums = @user.albums
 
     respond_to do |format|
       format.html # index.html.erb
@@ -18,18 +21,20 @@ class AlbumsController < ApplicationController
   end
 
   def show
-  	@user = User.find(session[:current_user_id])
+  	@user = current_user#User.find(session[:current_user_id])
   	
     # OPTIMIZE: WA: .exists? and then .find will
     # fire off two SQL queries. Use only find
     # and take decision depending upon the result.
-    if @user.albums.exists?(params[:id])
+    
+    # Optimized: NG
+		begin
     	@album = @user.albums.find(params[:id])
 			respond_to do |format|
 			  format.html # show.html.erb
 			  format.json { render json: @album }
 		  end
-		else
+		rescue ActiveRecord::RecordNotFound
 			redirect_to albums_path
 		end
   end
@@ -38,7 +43,7 @@ class AlbumsController < ApplicationController
     @album = Album.new
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html
       format.json { render json: @album }
     end
   end

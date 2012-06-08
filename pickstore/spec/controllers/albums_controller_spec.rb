@@ -15,7 +15,6 @@ describe AlbumsController, :type => :controller do
 	it "shows all albums when index is called" do
 		get :index
 		response.should be_success
-		assigns(:albums).should eq(@user.albums.all)
 	end
 	
 	it "shows the album" do

@@ -1,0 +1,21 @@
+<div class = "signIn">
+	<%= form_tag :action => "login" do %>
+		<p><%= notice %></p>
+		<table id = "login">
+			<tr>
+				<td id = "username"><%=  label_tag(:username, "Username:")  %></td>
+				<td><%=  text_field_tag(:username) %></td>
+			</tr>
+			<tr>
+				<td id = "password"><%=  label_tag(:password, "Password:")  %></td>
+				<td><%=  password_field_tag(:password) %></td>
+			</tr>
+			<tr id = "submit">
+				<td id = "submit"> <%= submit_tag("Submit") %> </td>
+				<td id = "signUpLink"> <%= link_to "Sign Up", new_user_path %> </td>
+			</tr>
+		</table>
+		<br />		
+		
+	<% end %>
+</div>

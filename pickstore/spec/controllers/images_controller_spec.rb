@@ -2,11 +2,14 @@ require 'spec_helper'
 
 describe ImagesController, :type => :controller do
 	render_views
-	fixtures :albums, :images
+	fixtures :albums, :images, :users
 	
 	before(:each) do
+		@user = users(:one)
 		@album = albums(:one)
 		@image = images(:one)
+		session[:current_user] = @user.username
+		session[:current_user_id] = @user.id
 	end
 	
 	it "shows an image when show action is called" do

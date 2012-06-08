@@ -3,13 +3,13 @@ Pickstore::Application.routes.draw do
   	resources :images, :except => ['edit', 'update']
   end
 
-  resources :users do
-  	post 'login', :on => :collection
-  end
+  resources :users, :only => ['new', 'create']
+  	
+	resources :login, :only => ['index', 'login', 'logout'] do
+		post 'login', :on => :collection
+	end
 
-	match 'login' => 'users#index'
-	match 'signup' => 'users#new'
-	match 'logout' => 'users#logout'
+	match 'logout' => 'login#logout'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -59,7 +59,7 @@ Pickstore::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => 'users#index'
+  root :to => 'login#index'
   
   #match '*a', :to => 'errors#routing', :layout => false
 
