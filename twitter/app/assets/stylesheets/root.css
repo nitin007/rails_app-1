@@ -1,0 +1,97 @@
+body {
+	margin: 0px;
+	padding: 0px;
+	background-color: #0067C8;
+}
+
+div.wrapper {
+	width: 100%;
+}
+
+div.header {
+	width: 100%;
+	background-color: #313131;
+	height: 40px;
+}
+
+a {
+	text-decoration: none;
+	color: #727272;
+}
+
+div.header .image {
+	width: 1000px;
+}
+
+div.header div.image1 {
+	margin-left: 200px;
+	margin-top: 7px;
+	float:left;
+}
+
+div.header div.image2 {
+	float: right;
+}
+
+div.header #img1 {
+	width: 50px;
+	border-radius: 5px;
+}
+
+div.header #img2 {
+	width: 105px;
+	border-radius: 5px;
+}
+
+div.content {
+	width: 1024px;
+	margin: 0 auto;
+	margin-top: 150px;
+}
+
+div.login {
+	width: 400px;
+	float: right;
+	background-color: #E3E3E3;
+	border-radius: 5px;
+	padding: 10px;
+}
+
+div.login input[type = "text"], div.login input[type = "password"] {
+	width: 320px;
+	height: 20px;
+	border: 1px solid #A0A0A0;
+	border-radius: 3px;
+	padding:5px;
+}
+
+div.images {
+	width: 400px;
+	float: left;
+	margin-left: 100px;
+}
+
+div.images img {
+	border-radius: 5px;
+	width: 470px;
+}
+
+div.login .head {
+	font-family: Sans-serif;
+	font-size: 25px;
+}
+
+div.login table td#submit, div.login table td#signUpLink {
+	padding: 10px;
+	padding-left: 0px;
+}
+
+input[type="submit"] {
+	width:100px;
+	height: 30px;
+	border: 2px solid #003464;
+	border-radius: 2px;
+	color: #fff;
+	font-size: 17px;
+	background-color: #0067C8;
+}

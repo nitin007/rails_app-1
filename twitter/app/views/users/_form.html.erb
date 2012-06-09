@@ -1,0 +1,44 @@
+<div class = "signUp">
+	<%= form_for(@user) do |f| %>
+		<% if @user.errors.any? %>
+		  <div id="error_explanation">
+		    <h2><%= pluralize(@user.errors.count, "error") %> prohibited you from being registered:</h2>
+
+		    <ul>
+		    <% @user.errors.full_messages.each do |msg| %>
+		      <li><%= msg %></li>
+		    <% end %>
+		    </ul>
+		  </div>
+		<% end %>
+		
+		<table>
+			<tr>
+				<td colspan = "2" ><%=  f.text_field :fullname, :value => "Full Name" %></td>
+			</tr>
+			
+			<tr>
+				<td colspan = "2" ><%=  f.text_field :email, :value => "Email" %></td>
+			</tr>
+		
+			<tr>
+				<td colspan = "2" ><%=  f.text_field :username, :value => "Username" %></td>
+			</tr>
+			
+			<tr>
+				<td colspan = "2" ><%=  f.password_field :password,  :value => "Password" %></td>
+			</tr>
+			
+			<tr>
+				<td colspan = "2" ><%=  f.password_field :password_confirmation,  :value => "Password" %></td>
+			</tr>
+			
+			<tr>
+				<td id = "submit" > <%= f.submit("Submit") %> </td>
+				<td id = "signInLink" > <%= link_to "Sign In", login_index_path %> </td>
+			</tr>
+		</table>
+		<br />		
+		<span>  </span>
+	<% end %>
+</div>

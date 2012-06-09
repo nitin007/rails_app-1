@@ -1,0 +1,19 @@
+<div class = "signIn">
+	<%= form_tag :action => "login" do %>
+		<p><%= notice %></p>
+		<table id = "login">
+			<tr>
+				<td colspan = "2" ><%=  text_field_tag(:username, "Username") %></td>
+			</tr>
+			<tr>
+				<td  colspan = "2" ><%=  password_field_tag(:password, "Password") %></td>
+			</tr>
+			<tr id = "submit">
+				<td id = "submit"> <%= submit_tag("Submit") %> </td>
+				<td id = "signUpLink"> <%= link_to "Sign Up", new_user_path %> </td>
+			</tr>
+		</table>
+		<br />		
+		
+	<% end %>
+</div>

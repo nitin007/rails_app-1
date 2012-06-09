@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Twitter</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+  <link rel="icon" href="/favicon.ico" type="image/x-icon"/>
+</head>
+<body>
+	<div class = "wrapper">
+		<div class = "header">
+			<div class = "image">
+				<div class = "image1">
+					<%= image_tag "twitter-bird.png", :id => "img1" %>
+				</div>
+				<div class = "image2">
+					<%= image_tag "twitter.jpg", :id => "img2" %>				
+				</div>
+			</div>
+		</div>
+		<div class = "contentWrapper">
+			<div class = "content">			
+				<%= yield %>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
