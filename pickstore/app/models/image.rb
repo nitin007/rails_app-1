@@ -10,10 +10,6 @@ class Image < ActiveRecord::Base
   		
   validates :title, :presence => true
   
-  # FIXME: WA: Following should also include validations for
-  # size and type of the file being uploaded. A user can
-  # upload an avi file of 4GiB
-  
   #Fixed: NG
   validates_format_of :picture_file_name, :with => %r{\.(jpeg|gif)$}i
   validates_attachment_size :picture, :less_than => 1.megabytes

@@ -20,7 +20,12 @@
   <%= @image.album.name %>
 </p>
 
+<%# OPTIMIZE: WA: There is no need to populate an album in @album.
+Use @image.ablum instead. %>
 <%= link_to 'Back', album_path(@album) %> 
 <span>|</span>
+<%# FIXME: WA: Following link is used to 'destroy'
+a single image. There is no need to create a URI like /albums/:id/image/:image_id.
+  A URI like /images/:id will suffice. %>
 <%= link_to "destroy", [@album, @image], confirm: 'Are you sure?', method: :delete %>
 

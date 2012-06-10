@@ -1,15 +1,21 @@
 class ImagesController < ApplicationController
-  # FIXME: WA: No before filter to check if user is logged in.
-  
   # Fixed: NG
  	before_filter :only_when_user_is_logged_in
   def show
 
-    # FIXME: WA: One can see the image of any user
-    # by placing id in params
-    
     # Fixed: NG
     begin
+      # OPTIMIZE: WA: Following makes three SQL queries.
+      # Reduce it to one. Use joins etcetera.
+
+      # OPTIMIZE: WA: Usually we create instance variable to keep
+      # information that we use in our views or helpers. In
+      # following case, @user is not used anywhere in the
+      # views. There is no need to put current_user in @user.
+
+      # REFACTOR: WA: Fetching of a specific image can be carried
+      # out in a before filter and used in both show and destroy
+      # actions.
 		  @user = current_user
 		  @album = @user.albums.find(params[:album_id])
 		  @image = @album.images.find(params[:id])
@@ -23,11 +29,19 @@ class ImagesController < ApplicationController
   end
 
   def destroy
-    # FIXME: WA: One can _destroy_ the image of any user
-    # by placing id in params
-    
     # Fixed: NG   
     begin
+      # OPTIMIZE: WA: Following makes three SQL queries.
+      # Reduce it to one. Use joins etcetera.
+
+      # OPTIMIZE: WA: Usually we create instance variable to keep
+      # information that we use in our views or helpers. In
+      # following case, @user is not used anywhere in the
+      # views. There is no need to put current_user in @user.
+
+      # REFACTOR: WA: Fetching of a specific image can be carried
+      # out in a before filter and used in both show and destroy
+      # actions.
 		  @user = current_user
 		  @album = @user.albums.find(params[:album_id])
 		  @image = @album.images.find(params[:id])
