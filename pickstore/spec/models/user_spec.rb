@@ -55,23 +55,4 @@ describe User do
 			@user1.should be_valid
 		end
 	end
-	
-	context "association" do
-    # FIXME: WA: What does following test do?
-    # Check the validity of an album? Move it
-    # to Album's specs.
-    
-    #Fixed: NG
-		it "with albums should be valid" do
-      # FIXME: WA: We need not check a users validity in every test.
-      # It is already tested in one of the tests above.
-      
-      #Fixed: NG
-			@user1 = User.find_by_username('nitin')
-			@album = @user1.albums.new(:name => "Nature")
-      # REFACTOR: WA: Here you are testing the functionality
-      # of ActiveRecord. You do not need this test.
-			@album.user_id.should eq(@user.id)
-		end
-	end
 end

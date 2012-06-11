@@ -8,12 +8,14 @@
       your database will make much sense. Think about a
       situation in which you have stale username in your
       session. #%>
-			<td>Hi <b><%= session[:current_user] %> </b></td>
+      <%#Fixed: NG%>
+			<td>Hi <b><%= current_user.username %> </b></td>
       <%# FIXME: WA: Following is a makes a GET request
       while _changing_ the server state. Make it POST.
       Or better yet DELETE because it actually DELETEs
       something from server. in this case user's session %>
-			<td><%= link_to "logout", logout_path %></td>
+      <%# Fixed: NG%>
+			<td><%= link_to "Logout", logout_path, :method => :delete %></td>
 		</tr>
 	</table>
 </div>
@@ -25,7 +27,6 @@
 	<table>
 		<tr class = "headers">
 		  <th class = "first">Name</th>
-		  <th>User</th>
 		  <th></th>
 		  <th></th>
 		  <th></th>
@@ -34,15 +35,18 @@
   <%# FIXME: WA: Populate albums in an instance variable in controller's action
         and use it here. The render json: @albums will also use the same variable.
         This way your code is DRY.
+        
+        #Fixed: NG
   #%>
-	<% current_user.albums.each do |album| %>
+	<% @albums.each do |album| %>
 		<tr class = "albums">
 		  <td class = "first"><%= album.name %></td>
       <%# OPTIMIZE: WA: You already have a album's user in current_user.
       Utilize that to show user name here. I'm assuming that you are
       showing only current user's albums to current user. It makes excess
       SQL queries. %>
-		  <td><%= album.user.username %></td>
+      <%# Optimized: NG%>
+
 		  <td class = "link"><%= link_to 'Show', album %></td>
 			<td class = "link"><%= link_to 'Edit', edit_album_path(album) %></td>
 			<td class = "link"><%= link_to 'Destroy', album, confirm: 'Are you sure?', method: :delete %></td>

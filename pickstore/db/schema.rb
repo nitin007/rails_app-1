@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120701126754) do
+ActiveRecord::Schema.define(:version => 20120704932678) do
 
   create_table "albums", :force => true do |t|
     t.string   "name"
@@ -41,8 +41,8 @@ ActiveRecord::Schema.define(:version => 20120701126754) do
     t.datetime "updated_at", :null => false
   end
 
-  add_index "images_tags", ["image_id", "tag_id"], :name => "index_images_tags_on_image_id_and_tag_id"
-  add_index "images_tags", ["tag_id", "image_id"], :name => "index_images_tags_on_tag_id_and_image_id"
+  add_index "images_tags", ["image_id", "tag_id"], :name => "index_image_tags_on_image_id_and_tag_id"
+  add_index "images_tags", ["tag_id", "image_id"], :name => "index_image_tags_on_tag_id_and_image_id"
 
   create_table "tags", :force => true do |t|
     t.string   "name"

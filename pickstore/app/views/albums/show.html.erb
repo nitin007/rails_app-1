@@ -3,11 +3,6 @@
 <table id = "alb_usr">
 	<tr>
 		<td><b>Album:</b> <%= @album.name %></td>
-      <%# OPTIMIZE: WA: You already have a album's user in current_user.
-      Utilize that to show user name here. I'm assuming that you are
-      showing only current user's albums to current user. It makes excess
-      SQL queries. %>
-		<td><b>User:</b>  <span><%= @album.user.username %></span></td>
 	</tr>
 </table>
 
@@ -27,9 +22,11 @@
 			<td><%= image_tag image.picture.url(:thumb) %></td>
       <%# FIXME: WA: Following two links are used to 'show' and 'destroy'
       a single image. There is no need to create a URI like /albums/:id/image/:image_id.
-      A URI like /images/:id will suffice. %>
-			<td class = "link"><%= link_to "show", [@album, image] %></td>
-			<td class = "link"><%= link_to "destroy", [@album, image], confirm: 'Are you sure!', method: :delete %></td>
+      A URI like /images/:id will suffice. 
+      # Fixed: NG
+      %>
+			<td class = "link"><%= link_to "show",  image %></td>
+			<td class = "link"><%= link_to "destroy", image, confirm: 'Are you sure!', method: :delete %></td>
 		</tr>
 	<% end %>
 	</table>

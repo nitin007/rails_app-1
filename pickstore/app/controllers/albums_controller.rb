@@ -2,15 +2,13 @@ class AlbumsController < ApplicationController
 	before_filter :only_when_user_is_logged_in
 	
   def index
-#  	@user = current_user #User.find(session[:current_user_id])
-		# Fixed: NG
-    
     #Fixed: NG
-#    @albums = @user.albums
+    @albums = current_user.albums.to_a
 
-    # FIXME: WA: @albums is nil
+    # FIXME: WA: @albums is nil			->?
+    # Fixed: NG
     respond_to do |format|
-      format.html # index.html.erb
+      format.html
       format.json { render json: @albums }
     end
   end
@@ -20,7 +18,7 @@ class AlbumsController < ApplicationController
     # information that we use in our views or helpers. In
     # following case, @user is not used anywhere in the
     # views. There is no need to put current_user in @user.
-  	@user = current_user#User.find(session[:current_user_id])
+  	#@user = current_user#User.find(session[:current_user_id])
   	
     # Optimized: NG
 
@@ -29,14 +27,16 @@ class AlbumsController < ApplicationController
     # exception will be raise only by ActiveRecord#find.
     # We can try and remove respond_to block from begin
     # rescue block.
+    
+    # Optimized: NG
 		begin
-    	@album = @user.albums.find(params[:id])
-			respond_to do |format|
-			  format.html # show.html.erb
-			  format.json { render json: @album }
-		  end
+    	@album = current_user.albums.find(params[:id])
 		rescue ActiveRecord::RecordNotFound
-			redirect_to albums_path
+			redirect_to albums_path and return
+		end
+		
+		respond_to do |format|
+			format.html
 		end
   end
 
@@ -56,15 +56,19 @@ class AlbumsController < ApplicationController
     # information that we use in our views or helpers. In
     # following case, @user is not used anywhere in the
     # views. There is no need to put current_user in @user.
-  	@user = User.find(session[:current_user_id])
+    
+    # Fixed: NG
+  	#@user = User.find(session[:current_user_id])
   	
     # OPTIMIZE: WA: .exists? and then .find will
     # fire off two SQL queries. Use only find or
     # find_by_id and take decision depending upon
     # the result.
-    if @user.albums.exists?(params[:id])
-    	@album = @user.albums.find(params[:id])
-		else
+    
+    # Optimized: NG
+    begin
+    	@album = current_user.albums.find(params[:id])
+		rescue ActiveRecord::RecordNotFound
 			redirect_to albums_path
 		end
   end
@@ -81,7 +85,9 @@ class AlbumsController < ApplicationController
         # server can only send a head :ok to indicate that creation of
         # the album was successful and it can use the information that it
         # already has with it to display proper results to the user.
-        format.json { render json: @album, status: :created, location: @album }
+        
+        # -> Optimized: NG
+        format.json { head :ok, status: :created, location: @album }
       else
         format.html { render action: "new" }
         format.json { render json: @album.errors, status: :unprocessable_entity }
@@ -92,16 +98,19 @@ class AlbumsController < ApplicationController
   def update
     # FIXME: WA: Following might raise an ActiveRecord::RecordNotFound
     # exception, handle that.
-    @album = Album.find(params[:id])
+    
+    #Fixed: NG
+    begin
+	    @album = Album.find(params[:id])
+ 		rescue ActiveRecord::RecordNotFound
+			redirect_to albums_path and return
+		end
 
     respond_to do |format|
       if @album.update_attributes(params[:album])
         format.html { redirect_to @album, notice: 'Album was successfully updated.' }
-        # TODO: WA: :no_content sends an HTTP 204. In this case 205 will be more suitable.
-        format.json { head :no_content }
       else
         format.html { render action: "edit" }
-        format.json { render json: @album.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -109,14 +118,22 @@ class AlbumsController < ApplicationController
   def destroy
     # FIXME: WA: Following might raise an ActiveRecord::RecordNotFound
     # exception, handle that.
-    @album = Album.find(params[:id])
+    
+    #Fixed: NG
+    begin
+	    @album = Album.find(params[:id])
+ 		rescue ActiveRecord::RecordNotFound
+			redirect_to albums_path and return
+		end
 
     # FIXME: WA: What if the album is not destroyed. Handle that situation.
+    
     @album.destroy
+    #Fixed: NG
+   	redirect_to albums_path, :notice => "Album was not destroyed!" if !@album.destroyed?
 
     respond_to do |format|
       format.html { redirect_to albums_url }
-      format.json { head :no_content }
     end
   end
 end

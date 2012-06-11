@@ -2,16 +2,7 @@ require 'spec_helper'
 
 describe AlbumsController, :type => :controller do
 	render_views
-	fixtures :albums
-	fixtures :users
-	
-	before(:each) do
-		@user = users(:one)
-		@album = albums(:one)
-		session[:current_user] = @user.username
-		session[:current_user_id] = @user.id
-	end
-	
+		
 	it "shows all albums when index is called" do
 		get :index
 		response.should be_success
