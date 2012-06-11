@@ -34,6 +34,7 @@ describe Album do
     # to Image's specs.
     
     #Fixed: NG
+    # Not FIXED: WA:
 		it "with images should be valid" do 
 			@album = Album.new(:name => "MyString", :user_id => 1)
 			@album.should be_valid

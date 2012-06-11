@@ -19,6 +19,8 @@ class LoginController < ApplicationController
 		end
 	end
 	
+  # FIXME: WA: Please make a check in a bfore filter
+  # if a user is signe in before executing this action.
 	def logout
 		session[:current_user] = nil
 		redirect_to login_index_path

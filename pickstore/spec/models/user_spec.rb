@@ -69,6 +69,8 @@ describe User do
       #Fixed: NG
 			@user1 = User.find_by_username('nitin')
 			@album = @user1.albums.new(:name => "Nature")
+      # REFACTOR: WA: Here you are testing the functionality
+      # of ActiveRecord. You do not need this test.
 			@album.user_id.should eq(@user.id)
 		end
 	end

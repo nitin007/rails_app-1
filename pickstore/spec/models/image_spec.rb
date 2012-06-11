@@ -12,9 +12,6 @@ describe Image do
 	
 	context "with its attributes filled" do
 		it "should be valid" do
-      # TODO: WA: Use a real image file to test the
-      # validity of an image.
-      
       #Fixed: NG
 			@image = Image.new(:title => "abcde", :picture => File.new("#{Rails.root}/spec/fixtures/images/rails.png"), :picture_file_name => "url.jpeg", :picture_content_type => "abc", :picture_file_size => 865, :album_id => 2)
 			@image.should be_valid
@@ -34,10 +31,13 @@ describe Image do
     # to Tag's specs.
     
     #Fixed: NG
+    # Not FIXED: WA:
 		it "with tags should be valid" do
 			@image = Image.new(:title => "abcde", :picture_file_name => "url.jpeg", :picture_content_type => "abc", :picture_file_size => 865, :album_id => 2)
 			@image.should be_valid
 			@tag = @image.tags.new(:name => "abcd")
+      # REFACTOR: WA: Here you are testing the functionality
+      # of ActiveRecord. You do not need this test.
 			@tag.image_id.should eq(@image.id)
 		end
 	end
@@ -50,6 +50,9 @@ describe Image do
     # Fixed: NG
 		it "should destroy associated tags" do
 			@image = Image.new(:title => "abcde", :picture_file_name => "url.jpeg", :picture_content_type => "abc", :picture_file_size => 865, :album_id => 2)
+      # FIXME: WA: We need not check a image's validity in every test.
+      # Just create a valid image and test it. One test in your suite
+      # should _ideally_ test only one thing.
 			@image.should be_valid
 			@image.save
 			@tag = @image.tags.new(:name => "abcd")

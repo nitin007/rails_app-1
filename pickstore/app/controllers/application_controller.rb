@@ -4,6 +4,11 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
 	  
 	def current_user
+    # OPTIMIZE: WA: When you make multiple calls to
+    # current_user in your controllers' actions, views and
+    # helpers, following SQL query will be fired up that many times.
+    # Try to use ||= operator. Read about it at:
+    # http://www.rubyinside.com/what-rubys-double-pipe-or-equals-really-does-5488.html
 		User.find(session[:current_user_id])
 	end
  

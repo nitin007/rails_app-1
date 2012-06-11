@@ -13,9 +13,6 @@ describe UsersController, :type => :controller do
 	
 	context "creates a new user" do
 		it "should redirect to albums path with notice on successful registered" do
-      # TODO: WA: Write controller tests in isolation of your
-      # database. Use stubs and mocks.
-      
       #Fixed NG
 		  User.stub!(:new) {mock_model('User', :save => true)}
 			post :create, :user => :username => "niitn", :password => "abcdef", :password_confirmation => "abcdef"
@@ -24,12 +21,16 @@ describe UsersController, :type => :controller do
 		end
 		
 		it "should re-render new template on failed registration" do
+      # TODO: WA: Write controller tests in isolation of your
+      # database. Use stubs and mocks.
+      
 			post :create, :user => {:username => "nitin"}
 			flash[:notice].should be_nil
 			response.should render_template('new')
 		end
 	end
 	
+  # REFACTOR: WA: We do not need following tests for UsersController
 	context "redirects user" do
 		it "on successful login to albums path" do
 			post :login, :username => "nitin", :password => "abcdef"
