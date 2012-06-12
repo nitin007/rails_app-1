@@ -21,11 +21,10 @@ class LoginsController < ApplicationController
 		end
 	end
 	
-  # FIXME: WA: Please make a check in a bfore filter
-  # if a user is signe in before executing this action.
   # Fixed: NG
 	def logout
 		session[:current_user_id] = nil
+    # FIXME: WA: session[:current_user] still contains username
 		redirect_to logins_path
 	end
 end

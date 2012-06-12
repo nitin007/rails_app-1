@@ -1,4 +1,5 @@
 class LoginController < ApplicationController
+  # FIXME: WA: This controller is not needed.
 	def index
 		respond_to do |format|
       format.html      
